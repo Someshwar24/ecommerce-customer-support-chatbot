@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+
+# Model checkpoints and weights
+flan_t5_lora_ecommerce/
+checkpoint-*/
+*.safetensors
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env
+
+# Operating system
+.DS_Store
+Thumbs.db
