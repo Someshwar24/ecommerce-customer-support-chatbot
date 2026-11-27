@@ -147,9 +147,6 @@ def rag_response(query):
 
     return response
 
-
-# -------------------------- Streamlit UI --------------------------
-
 st.set_page_config(
     page_title="E-commerce Customer Support",
     page_icon="🛍️",
