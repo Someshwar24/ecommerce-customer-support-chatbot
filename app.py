@@ -25,32 +25,32 @@ def load_rag_pipeline(pdf_path_string, pdf_modified_time):
             "Place Customer_Support_PDF.pdf inside the knowledge_base folder."
         )
 
-    # Same PDF loading code as Google Colab
+    # PDF loading
     loader = PyPDFLoader(str(pdf_file))
     documents = loader.load()
 
-    # Same chunking configuration as Google Colab
+    # Chunking
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=500,
         chunk_overlap=100
     )
     chunks = text_splitter.split_documents(documents)
 
-    # Same embedding model as Google Colab
+    # Embedding model
     embedding_model = SentenceTransformer(
         "sentence-transformers/all-MiniLM-L6-v2"
     )
 
     chunk_texts = [chunk.page_content for chunk in chunks]
 
-    # Same embedding generation as Google Colab
+    # Embedding generation
     embeddings = embedding_model.encode(
         chunk_texts,
         show_progress_bar=True,
         convert_to_numpy=True
     )
 
-    # Same FAISS index construction as Google Colab
+    # FAISS index construction
     embeddings = np.array(
         embeddings,
         dtype=np.float32
@@ -60,7 +60,7 @@ def load_rag_pipeline(pdf_path_string, pdf_modified_time):
     index = faiss.IndexFlatL2(dimension)
     index.add(embeddings)
 
-    # Same original FLAN-T5-base model as Google Colab
+    # FLAN-T5-base model
     model_name = "google/flan-t5-base"
 
     tokenizer = AutoTokenizer.from_pretrained(model_name)
